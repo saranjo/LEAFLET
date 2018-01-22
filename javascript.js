@@ -1,9 +1,9 @@
 
-// De la documentation ici : https://github.com/IGNF/geoportal-extensions/blob/master/README-leaflet.md 
+// De la documentation ici : https://github.com/IGNF/geoportal-extensions/blob/master/README-leaflet.md
 
 function go() {
     map = L.map("map").setView([48.845, 2.424], 5);
-    
+
     var lyrOrtho = L.geoportalLayer.WMTS(
         {
             layer: "ORTHOIMAGERY.ORTHOPHOTOS",
@@ -14,7 +14,7 @@ function go() {
 }
 
 Gp.Services.getConfig({
-    apiKey : "mettezlacléquevotreclientdoitvousfournir",
+    apiKey : "ml4xiy7nhqonc9ae3u13n03b",
     onSuccess : go
 }) ;
 
