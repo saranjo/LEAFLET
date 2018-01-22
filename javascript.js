@@ -1,4 +1,16 @@
+$('a[href^="#image"]').click(function(){
+    var id = $(this).attr("href");
+    var offset = $(id).offset().top
+    $('html, body').animate({scrollTop: offset}, 'slow');
+    return false;
+});
 
+$('a[href^="#accueil"]').click(function(){
+    var id = $(this).attr("href");
+    var offset = $(id).offset().top
+    $('html, body').animate({scrollTop: offset}, 'slow');
+    return false;
+});
 // De la documentation ici : https://github.com/IGNF/geoportal-extensions/blob/master/README-leaflet.md
 
 function go() {
@@ -37,6 +49,31 @@ function adpaterALaTailleDeLaFenetre(){
   source.style.width = largeur+'px'; // la largeur
 }
 
+
+function adpaterALaTailleDeLaFenetre1(){
+  var largeur = document.documentElement.clientWidth,
+  hauteur = document.documentElement.clientHeight;
+
+
+  var source = document.getElementById('image'); // récupère l'id source
+  source.style.height = hauteur+'px'; // applique la hauteur de la page
+  source.style.width = largeur+'px'; // la largeur
+}
+
+// Une fonction de compatibilité pour gérer les évènements
+function addEvent1(element, type, listener){
+  if(element.addEventListener){
+    element.addEventListener(type, listener, false);
+  }else if(element.attachEvent){
+    element.attachEvent("on"+type, listener);
+  }
+}
+
+// On exécute la fonction une première fois au chargement de la page
+addEvent1(window, "load", adpaterALaTailleDeLaFenetre1);
+// Puis à chaque fois que la fenêtre est redimensionnée
+addEvent1(window, "resize", adpaterALaTailleDeLaFenetre1);
+
 // Une fonction de compatibilité pour gérer les évènements
 function addEvent(element, type, listener){
   if(element.addEventListener){
@@ -50,3 +87,18 @@ function addEvent(element, type, listener){
 addEvent(window, "load", adpaterALaTailleDeLaFenetre);
 // Puis à chaque fois que la fenêtre est redimensionnée
 addEvent(window, "resize", adpaterALaTailleDeLaFenetre);
+
+
+function imagegalerie()
+{
+var active = $("#images .active");
+var next = (active.next().length > 0) ? active.next() : $('#images img:first');
+  active.fadeOut(function(){
+  active.removeClass('active');
+  next.fadeIn().addClass('active');
+  });
+}
+
+setInterval('imagegalerie()', 4000);
+
+imagegalerie();
