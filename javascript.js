@@ -111,6 +111,8 @@ var greenIcon = L.icon({
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
+//Variable liées aux limites de la commune
+var limites;
 
 //Variable AJAX pour la fonction lire_objet_JSON()
 var ajax_lire_objet_JSON = new XMLHttpRequest();
@@ -141,7 +143,12 @@ function lire_fichier_JSON(nom_fichier_JSON){
           //On interdit toute nouvelle entrée dans la boucle
           entree_boucle = true;
 
-          L.geoJSON(objJSON).addTo(map);
+          if (limites){
+            map.removeLayer(limites);
+          }
+
+          limites = L.geoJSON(objJSON).addTo(map);
+          map.fitBounds(limites.getBounds());
       }})
 
   //Requête à envoyer, on envoie le nom du fichier JSON que l'utilisateur choisit
