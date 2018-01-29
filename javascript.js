@@ -87,19 +87,19 @@ setInterval('imagegalerie()', 4000);
 imagegalerie();
 
 function showCities(){
-  markerParis    = L.marker([48.85, 2.32],{icon: greenIcon}).addTo(map).bindPopup("Paris");
-  markerBordeaux = L.marker([44.83, -0.57],{icon: greenIcon}).addTo(map).bindPopup("Bordeaux");
-  markerNice     = L.marker([43.71, 7.26],{icon: greenIcon}).addTo(map).bindPopup("Nice");
+  markerParis    = L.marker([48.85, 2.32],{icon: greenIcon}).addTo(map).bindPopup("<center>Paris<br>2 206 500 habitants</center>");
+  markerBordeaux = L.marker([44.83, -0.57],{icon: greenIcon}).addTo(map).bindPopup("<center>Bordeaux<br>249 712 habitants</center>");
+  markerNice     = L.marker([43.71, 7.26],{icon: greenIcon}).addTo(map).bindPopup("<center>Nice<br> 342 522 habitants</center>");
 }
 
 function manageMarkers(){
-  var markerP = [document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[0],"Paris"];
-  var markerB = [document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[1],"Bordeaux"];
-  var markerN = [document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[2],"Nice",];
+  var markerP = document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[0];
+  var markerB = document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[1];
+  var markerN = document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[2];
 
-  markerP[0].addEventListener("click",clickOnParis);
-  markerB[0].addEventListener("click",clickOnBordeaux);
-  markerN[0].addEventListener("click",clickOnNice);
+  markerP.addEventListener("click",clickOnParis);
+  markerB.addEventListener("click",clickOnBordeaux);
+  markerN.addEventListener("click",clickOnNice);
 }
 
 //Définition de l'icone du marker
@@ -173,8 +173,12 @@ function clickOnNice(event){
 function reinitializeMap(){
   if (limites){
     map.removeLayer(limites);
+    map.removeLayer(markerParis);
+    map.removeLayer(markerBordeaux);
+    map.removeLayer(markerNice);
   }
   map.setView([48.845, 2.424], 5);
+  showCities();
 }
 
 ButtonReinitializeMap = document.getElementById("buttonReinitializeMap");
