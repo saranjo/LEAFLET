@@ -141,7 +141,6 @@ function lire_fichier_JSON(nom_fichier_JSON){
           donnees_fichier_JSON = ajax_lire_objet_JSON.responseText;
           objJSON = JSON.parse(donnees_fichier_JSON)
           //On interdit toute nouvelle entrée dans la boucle
-          entree_boucle = true;
 
           if (limites){
             map.removeLayer(limites);
@@ -149,6 +148,8 @@ function lire_fichier_JSON(nom_fichier_JSON){
 
           limites = L.geoJSON(objJSON).addTo(map);
           map.fitBounds(limites.getBounds());
+
+          entree_boucle = true;
       }})
 
   //Requête à envoyer, on envoie le nom du fichier JSON que l'utilisateur choisit
@@ -173,12 +174,8 @@ function clickOnNice(event){
 function reinitializeMap(){
   if (limites){
     map.removeLayer(limites);
-    map.removeLayer(markerParis);
-    map.removeLayer(markerBordeaux);
-    map.removeLayer(markerNice);
   }
   map.setView([48.845, 2.424], 5);
-  showCities();
 }
 
 ButtonReinitializeMap = document.getElementById("buttonReinitializeMap");
