@@ -175,6 +175,7 @@ function reinitializeMap(){
   if (limites){
     map.removeLayer(limites);
   }
+  map.closePopup();
   map.setView([48.845, 2.424], 5);
 }
 
