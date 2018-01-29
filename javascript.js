@@ -108,7 +108,7 @@ var greenIcon = L.icon({
     iconSize:     [25, 41], // size of the icon
     iconAnchor:   [12.5, 41], // point of the icon which will correspond to marker's location
     shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    popupAnchor:  [0, -45] // point from which the popup should open relative to the iconAnchor
 });
 
 //Variable liées aux limites de la commune
