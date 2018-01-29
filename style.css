@@ -64,3 +64,17 @@
 td, table tr th{
   text-align: center;
 }
+
+#divButtonReinitializeMap{
+  display: flex;
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  justify-content: flex-end;
+  z-index: 1;
+  margin-top: 0.5%;
+}
+
+#buttonReinitializeMap{
+  margin-right: 0.5%;
+}
