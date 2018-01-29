@@ -111,12 +111,54 @@ var greenIcon = L.icon({
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-function clickOnParis(event){
-  console.log("test1");
+
+//Variable AJAX pour la fonction lire_objet_JSON()
+var ajax_lire_objet_JSON = new XMLHttpRequest();
+
+/*
+Fonction permettant d'envoyer le nom du fichier sélectionné au fichier lecture_fichier_JSON.php
+Elle permet aussi de récupérer les données du ficher sélectionné
+*/
+function lire_fichier_JSON(nom_fichier_JSON){
+
+  var fichier_JSON_choisi = nom_fichier_JSON
+  //Variable indiquant si on est déjà entré dans la première boucle if
+  var entree_boucle = false;
+
+  //Destination et type de la requête AJAX asynchrone
+  ajax_lire_objet_JSON.open('POST', 'lecture_fichier_JSON.php', true);
+
+  //Métadonnées de la requête AJAX
+  ajax_lire_objet_JSON.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+  //Evenement de changement d'état de la requête
+  ajax_lire_objet_JSON.addEventListener('readystatechange',  function(e) {
+      //Si l'état est le numéro 4 et que la ressource est trouvée
+      if(ajax_lire_objet_JSON.readyState == 4 && ajax_lire_objet_JSON.status == 200 && !entree_boucle) {
+          // Le contenu du fichier JSON
+          donnees_fichier_JSON = ajax_lire_objet_JSON.responseText;
+          objJSON = JSON.parse(donnees_fichier_JSON)
+          //On interdit toute nouvelle entrée dans la boucle
+          entree_boucle = true;
+
+          L.geoJSON(objJSON).addTo(map);
+      }})
+
+  //Requête à envoyer, on envoie le nom du fichier JSON que l'utilisateur choisit
+  data = "fichier_JSON_choisi="+ fichier_JSON_choisi;
+
+  //Envoi de la requete à lecture_fichier_JSON.php
+  ajax_lire_objet_JSON.send(data);
+
 }
+
+function clickOnParis(event){
+  lire_fichier_JSON("Paris.geojson");
+}
+
 function clickOnBordeaux(event){
-  console.log("test2");
+  lire_fichier_JSON("Bordeaux.geojson");
 }
 function clickOnNice(event){
-  console.log("test3");
+  lire_fichier_JSON("Nice.geojson");
 }
