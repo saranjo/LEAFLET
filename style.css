@@ -22,12 +22,6 @@
   margin-top: 50px;
 }
 
-#nomVille{
-  display: flex;
-  justify-content: space-around;
-  
-}
-
 #img, #stats{
   display: flex;
   justify-content: space-around;
@@ -40,6 +34,15 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+}
+
+#all{
+  display: flex;
+  justify-content: space-around;
+}
+
+.name{
+  font-weight: bold;
 }
 
 #paris{

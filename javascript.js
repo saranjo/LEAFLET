@@ -72,7 +72,6 @@ addEvent(window, "load", adpaterALaTailleDeLaFenetre);
 addEvent(window, "resize", adpaterALaTailleDeLaFenetre);
 
 
-
 function imagegalerie()
 {
 var active = $("#images .active");
