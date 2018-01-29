@@ -32,9 +32,10 @@ function go() {
 }
 
 Gp.Services.getConfig({
-    apiKey : "ml4xiy7nhqonc9ae3u13n03b",
-    onSuccess : go
-}) ;
+    serverUrl: './autoconf.json',
+    callbackSuffix : "",
+    onSuccess: go
+});
 
 var infoDiv= document.getElementById("info") ;
 infoDiv.innerHTML= "<p> Extension Leaflet version "+Gp.leafletExtVersion+" ("+Gp.leafletExtDate+")</p>" ;
@@ -93,13 +94,13 @@ function showCities(){
 }
 
 function manageMarkers(){
-  var markerP = document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[0];
-  var markerB = document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[1];
-  var markerN = document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[2];
+  var markerP = [document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[0],"Paris"];
+  var markerB = [document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[1],"Bordeaux"];
+  var markerN = [document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[2],"Nice",];
 
-  markerP.addEventListener("click",clickOnCity);
-  markerB.addEventListener("click",clickOnCity);
-  markerN.addEventListener("click",clickOnCity);
+  markerP[0].addEventListener("click",clickOnParis);
+  markerB[0].addEventListener("click",clickOnBordeaux);
+  markerN[0].addEventListener("click",clickOnNice);
 }
 
 //Définition de l'icone du marker
@@ -111,6 +112,12 @@ var greenIcon = L.icon({
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-function clickOnCity(){
-  console.log("hello");
+function clickOnParis(event){
+  console.log("test1");
+}
+function clickOnBordeaux(event){
+  console.log("test2");
+}
+function clickOnNice(event){
+  console.log("test3");
 }
