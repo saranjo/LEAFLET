@@ -85,3 +85,15 @@ td, table tr th{
 #buttonReinitializeMap{
   margin-right: 0.5%;
 }
+
+#dgmParis{
+  background-image: url("Paris.png");
+}
+
+#dgmBordeaux{
+  background-image: url("Nice.png");
+}
+
+#dgmNice{
+  background-image: url("Bordeaux.png");
+}
