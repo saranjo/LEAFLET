@@ -174,8 +174,8 @@ function reinitializeMap(){
   if (limites){
     map.removeLayer(limites);
   }
-  map = L.map("map").setView([48.845, 2.424], 5);
+  map.setView([48.845, 2.424], 5);
 }
 
-ButtonReinitializeMap = document.getElementById("ButtonReinitializeMap");
+ButtonReinitializeMap = document.getElementById("buttonReinitializeMap");
 ButtonReinitializeMap.addEventListener("click",reinitializeMap);
