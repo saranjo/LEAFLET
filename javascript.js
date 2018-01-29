@@ -87,19 +87,19 @@ setInterval('imagegalerie()', 4000);
 imagegalerie();
 
 function showCities(){
-  markerParis    = L.marker([48.85, 2.32],{icon: greenIcon}).addTo(map).bindPopup("Paris");
-  markerBordeaux = L.marker([44.83, -0.57],{icon: greenIcon}).addTo(map).bindPopup("Bordeaux");
-  markerNice     = L.marker([43.71, 7.26],{icon: greenIcon}).addTo(map).bindPopup("Nice");
+  markerParis    = L.marker([48.85, 2.32],{icon: greenIcon}).addTo(map).bindPopup("<center>Paris<br>2 206 500 habitants</center>");
+  markerBordeaux = L.marker([44.83, -0.57],{icon: greenIcon}).addTo(map).bindPopup("<center>Bordeaux<br>249 712 habitants</center>");
+  markerNice     = L.marker([43.71, 7.26],{icon: greenIcon}).addTo(map).bindPopup("<center>Nice<br> 342 522 habitants</center>");
 }
 
 function manageMarkers(){
-  var markerP = [document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[0],"Paris"];
-  var markerB = [document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[1],"Bordeaux"];
-  var markerN = [document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[2],"Nice",];
+  var markerP = document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[0];
+  var markerB = document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[1];
+  var markerN = document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[2];
 
-  markerP[0].addEventListener("click",clickOnParis);
-  markerB[0].addEventListener("click",clickOnBordeaux);
-  markerN[0].addEventListener("click",clickOnNice);
+  markerP.addEventListener("click",clickOnParis);
+  markerB.addEventListener("click",clickOnBordeaux);
+  markerN.addEventListener("click",clickOnNice);
 }
 
 //Définition de l'icone du marker
@@ -108,15 +108,76 @@ var greenIcon = L.icon({
     iconSize:     [25, 41], // size of the icon
     iconAnchor:   [12.5, 41], // point of the icon which will correspond to marker's location
     shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    popupAnchor:  [0, -45] // point from which the popup should open relative to the iconAnchor
 });
 
-function clickOnParis(event){
-  console.log("test1");
+//Variable liées aux limites de la commune
+var limites;
+
+//Variable AJAX pour la fonction lire_objet_JSON()
+var ajax_lire_objet_JSON = new XMLHttpRequest();
+
+/*
+Fonction permettant d'envoyer le nom du fichier sélectionné au fichier lecture_fichier_JSON.php
+Elle permet aussi de récupérer les données du ficher sélectionné
+*/
+function lire_fichier_JSON(nom_fichier_JSON){
+
+  var fichier_JSON_choisi = nom_fichier_JSON
+  //Variable indiquant si on est déjà entré dans la première boucle if
+  var entree_boucle = false;
+
+  //Destination et type de la requête AJAX asynchrone
+  ajax_lire_objet_JSON.open('POST', 'lecture_fichier_JSON.php', true);
+
+  //Métadonnées de la requête AJAX
+  ajax_lire_objet_JSON.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+  //Evenement de changement d'état de la requête
+  ajax_lire_objet_JSON.addEventListener('readystatechange',  function(e) {
+      //Si l'état est le numéro 4 et que la ressource est trouvée
+      if(ajax_lire_objet_JSON.readyState == 4 && ajax_lire_objet_JSON.status == 200 && !entree_boucle) {
+          // Le contenu du fichier JSON
+          donnees_fichier_JSON = ajax_lire_objet_JSON.responseText;
+          objJSON = JSON.parse(donnees_fichier_JSON)
+          //On interdit toute nouvelle entrée dans la boucle
+
+          if (limites){
+            map.removeLayer(limites);
+          }
+
+          limites = L.geoJSON(objJSON).addTo(map);
+          map.fitBounds(limites.getBounds());
+
+          entree_boucle = true;
+      }})
+
+  //Requête à envoyer, on envoie le nom du fichier JSON que l'utilisateur choisit
+  data = "fichier_JSON_choisi="+ fichier_JSON_choisi;
+
+  //Envoi de la requete à lecture_fichier_JSON.php
+  ajax_lire_objet_JSON.send(data);
+
 }
+
+function clickOnParis(event){
+  lire_fichier_JSON("Paris.geojson");
+}
+
 function clickOnBordeaux(event){
-  console.log("test2");
+  lire_fichier_JSON("Bordeaux.geojson");
 }
 function clickOnNice(event){
-  console.log("test3");
+  lire_fichier_JSON("Nice.geojson");
 }
+
+function reinitializeMap(){
+  if (limites){
+    map.removeLayer(limites);
+  }
+  map.closePopup();
+  map.setView([48.845, 2.424], 5);
+}
+
+ButtonReinitializeMap = document.getElementById("buttonReinitializeMap");
+ButtonReinitializeMap.addEventListener("click",reinitializeMap);

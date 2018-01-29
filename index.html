@@ -19,7 +19,7 @@
 
 <body>
   <div id="barrenav">
-    <nav class="navbar navbar-default navbar-fixed-top ">
+    <nav class="navbar navbar-default navbar-fixed-top" id="bandeau">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -41,10 +41,9 @@
                 <li><a href="#quisommesnous">L'équipe</a></li>
               </ul>
             </li> -->
-            <li><a href="#image">Images des villes</a></li>
+            <li><a href="#image">Statistiques</a></li>
 
-            <li><a href="#stats">Statistiques</a></li>
-            <li><a href="#compare">Comparer ...</a></li>
+
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -58,9 +57,13 @@
 
   <div id="accueil">
     <h1>Carte comparative de la France</h1>
+  </div>
 
+  <div id="divButtonReinitializeMap">
+    <button id="buttonReinitializeMap" type="button" name="button" class="btn btn-primary">Réinititaliser la carte</button>
   </div>
   <div id="map"></div>
+
   <div id="info"></div>
 
 <div id="image">
@@ -71,9 +74,9 @@
   </div>
 
     <div id="img">
-      <div class="city" id="paris"></div>
-      <div class="city" id="bordeaux"></div>
-      <div class="city" id="nice"></div>
+      <div id="paris"></div>
+      <div id="bordeaux"></div>
+      <div id="nice"></div>
     </div>
 
     <div id="stats">
@@ -85,9 +88,9 @@
         </tr>
 
         <tr>
-          <td>2 000 000</th>
-          <td>0%(Macron)</th>
-          <td>700 000</th>
+          <td>2 206 500 habitants</th>
+          <td>7.5 %</th>
+          <td>1 202 409 actifs</th>
         </tr>
       </table>
 
@@ -99,9 +102,9 @@
         </tr>
 
         <tr>
-          <td>246 586</th>
-          <td>9,9%</th>
-          <td>80 000</th>
+          <td>249 712 habitants</th>
+          <td>9,9 %</th>
+          <td>122 919 actifs</th>
         </tr>
       </table>
 
@@ -113,22 +116,28 @@
         </tr>
 
         <tr>
-          <td>342 522</th>
-          <td>15,8%</th>
-          <td>120 000</th>
+          <td>342 522 habitants</th>
+          <td>15,8 %</th>
+          <td>149 197 actifs</th>
         </tr>
       </table>
     </div>
+
+    <div id="diagrammes">
+      <div id="dgmParis"></div>
+      <div id="dgmBordeaux"></div>
+      <div id="dgmNice"></div>
+    </div>
+
+  <div>
+    <p>Liens utiles :</p>
+    <ul>
+      <li><a href="https://www.paris.fr/">Paris</a></li>
+      <li><a href="https://www.nice.fr/">Nice</a></li>
+      <li><a href="https://www.bordeaux.fr/">Bordeaux</a></li>
+    </ul>
   </div>
-  <!-- <div id="image">
-
-    <div id="images">
-    <img src="Images/paris.jpg" alt="" class="active"/>
-    <img src="Images/bordeaux.jpg" alt="" />
-    <img src="Images/Nice.jpg" alt="" />
-
-  </div> -->
-
+  </div>
 
   <script src="jquery.js"></script>
   <script type="text/javascript" src="./javascript.js"></script>
