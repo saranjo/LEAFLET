@@ -22,13 +22,13 @@
   margin-top: 50px;
 }
 
-#img, #stats{
+#img, #stats, #diagrammes{
   display: flex;
   justify-content: space-around;
   margin: 20px;
 }
 
-.city{
+#img div, #diagrammes div{
   width: 32vw;
   height: 18vw;
   background-repeat: no-repeat;
