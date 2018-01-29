@@ -1,3 +1,8 @@
+var markerParis;
+var markerBordeaux;
+var markerNice;
+
+
 $('a[href^="#image"]').click(function(){
     var id = $(this).attr("href");
     var offset = $(id).offset().top
@@ -22,7 +27,8 @@ function go() {
         }
     );
     map.addLayer(lyrOrtho);
-
+    showCities();
+    manageMarkers();
 }
 
 Gp.Services.getConfig({
@@ -41,8 +47,6 @@ function adpaterALaTailleDeLaFenetre(){
   var hauteur_barrenav = document.getElementsByClassName("navbar navbar-default navbar-fixed-top ")[0].clientHeight;
   var hauteur_info = document.getElementById("info").clientHeight;
   hauteur -= (hauteur1 + hauteur_barrenav + hauteur_info);
-
-  console.log(hauteur);
 
   var source = document.getElementById('map'); // récupère l'id source
   var source1 = document.getElementById('image');
@@ -80,3 +84,32 @@ var next = (active.next().length > 0) ? active.next() : $('#images img:first');
 setInterval('imagegalerie()', 4000);
 
 imagegalerie();
+
+function showCities(){
+  markerParis    = L.marker([48.85, 2.32],{icon: greenIcon}).addTo(map).bindPopup("Paris");
+  markerBordeaux = L.marker([44.83, -0.57],{icon: greenIcon}).addTo(map).bindPopup("Bordeaux");
+  markerNice     = L.marker([43.71, 7.26],{icon: greenIcon}).addTo(map).bindPopup("Nice");
+}
+
+function manageMarkers(){
+  var markerP = document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[0];
+  var markerB = document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[1];
+  var markerN = document.getElementsByClassName("leaflet-marker-icon leaflet-zoom-animated leaflet-interactive")[2];
+
+  markerP.addEventListener("click",clickOnCity);
+  markerB.addEventListener("click",clickOnCity);
+  markerN.addEventListener("click",clickOnCity);
+}
+
+//Définition de l'icone du marker
+var greenIcon = L.icon({
+    iconUrl: 'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon.png',
+    iconSize:     [25, 41], // size of the icon
+    iconAnchor:   [12.5, 41], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+function clickOnCity(){
+  console.log("hello");
+}
