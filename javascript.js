@@ -45,36 +45,14 @@ function adpaterALaTailleDeLaFenetre(){
   console.log(hauteur);
 
   var source = document.getElementById('map'); // récupère l'id source
+  var source1 = document.getElementById('image');
   source.style.height = hauteur +'px'; // applique la hauteur de la page
   source.style.width = largeur+'px'; // la largeur
+  source1.style.height = hauteur +'px'; // applique la hauteur de la page
+  source1.style.width = largeur+'px'
 }
 
 
-function adpaterALaTailleDeLaFenetre1(){
-  var largeur = document.documentElement.clientWidth,
-  hauteur = document.documentElement.clientHeight;
-
-
-  var source = document.getElementById('image'); // récupère l'id source
-  source.style.height = hauteur+'px'; // applique la hauteur de la page
-  source.style.width = largeur+'px'; // la largeur
-}
-
-// Une fonction de compatibilité pour gérer les évènements
-function addEvent1(element, type, listener){
-  if(element.addEventListener){
-    element.addEventListener(type, listener, false);
-  }else if(element.attachEvent){
-    element.attachEvent("on"+type, listener);
-  }
-}
-
-// On exécute la fonction une première fois au chargement de la page
-addEvent1(window, "load", adpaterALaTailleDeLaFenetre1);
-// Puis à chaque fois que la fenêtre est redimensionnée
-addEvent1(window, "resize", adpaterALaTailleDeLaFenetre1);
-
-// Une fonction de compatibilité pour gérer les évènements
 function addEvent(element, type, listener){
   if(element.addEventListener){
     element.addEventListener(type, listener, false);
