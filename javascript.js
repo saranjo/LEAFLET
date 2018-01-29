@@ -169,3 +169,13 @@ function clickOnBordeaux(event){
 function clickOnNice(event){
   lire_fichier_JSON("Nice.geojson");
 }
+
+function reinitializeMap(){
+  if (limites){
+    map.removeLayer(limites);
+  }
+  map = L.map("map").setView([48.845, 2.424], 5);
+}
+
+ButtonReinitializeMap = document.getElementById("ButtonReinitializeMap");
+ButtonReinitializeMap.addEventListener("click",reinitializeMap);
