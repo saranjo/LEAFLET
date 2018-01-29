@@ -3,11 +3,64 @@
     width: 100%;
     height: 500px;
     box-shadow: 0 0 10px #999;
+    border : 2px solid black ;
+
 }
+
 #info {
     padding: 5px;
     width: 100%;
     height: 20px;
     font-family : "monospace" ;
     font-size: 10px;
+}
+
+#accueil{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+#img, #stats{
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+.city{
+  width: 32vw;
+  height: 18vw;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+#all{
+  display: flex;
+  justify-content: space-around;
+}
+
+.name{
+  font-weight: bold;
+}
+
+#paris{
+  background-image: url("Images/paris.jpg");
+}
+
+#nice{
+  background-image: url("Images/Nice.jpg");
+}
+
+#bordeaux{
+  background-image: url("Images/bordeaux.jpg");
+}
+
+#stats table{
+  width : 32vw;
+}
+
+td, table tr th{
+  text-align: center;
 }
