@@ -43,8 +43,8 @@
             </li> -->
             <li><a href="#image">Images des villes</a></li>
 
-            <li><a href="#nouscontacter">Staistiques</a></li>
-            <li><a href="#">Comparer ...</a></li>
+            <li><a href="#stats">Statistiques</a></li>
+            <li><a href="#compare">Comparer ...</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -54,6 +54,8 @@
   </div>
 </nav>
 
+</div>
+
   <div id="accueil">
     <h1>Carte comparative de la France</h1>
 
@@ -61,15 +63,66 @@
   <div id="map"></div>
   <div id="info"></div>
 
-  <div id="image">
+  <div id="all">
+    <div id="img">
+      <div class="city" id="paris"></div>
+      <div class="city" id="bordeaux"></div>
+      <div class="city" id="nice"></div>
+    </div>
+
+    <div id="stats">
+      <table>
+        <tr>
+          <th>Population</th>
+          <th>Chômage</th>
+          <th>Population active</th>
+        </tr>
+
+        <tr>
+          <td>2 000 000</th>
+          <td>0%(Macron)</th>
+          <td>700 000</th>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>Population</th>
+          <th>Chômage</th>
+          <th>Population active</th>
+        </tr>
+
+        <tr>
+          <td>246 586</th>
+          <td>9,9%</th>
+          <td>80 000</th>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <th>Population</th>
+          <th>Chômage</th>
+          <th>Population active</th>
+        </tr>
+
+        <tr>
+          <td>342 522</th>
+          <td>15,8%</th>
+          <td>120 000</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- <div id="image">
 
     <div id="images">
     <img src="Images/paris.jpg" alt="" class="active"/>
     <img src="Images/bordeaux.jpg" alt="" />
     <img src="Images/Nice.jpg" alt="" />
 
-  </div>
-</div>
+  </div> -->
 
 
   <script src="jquery.js"></script>

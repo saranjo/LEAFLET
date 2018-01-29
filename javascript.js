@@ -67,16 +67,16 @@ addEvent(window, "load", adpaterALaTailleDeLaFenetre);
 addEvent(window, "resize", adpaterALaTailleDeLaFenetre);
 
 
-function imagegalerie()
-{
-var active = $("#images .active");
-var next = (active.next().length > 0) ? active.next() : $('#images img:first');
-  active.fadeOut(function(){
-  active.removeClass('active');
-  next.fadeIn().addClass('active');
-  });
-}
-
-setInterval('imagegalerie()', 4000);
-
-imagegalerie();
+// function imagegalerie()
+// {
+// var active = $("#images .active");
+// var next = (active.next().length > 0) ? active.next() : $('#images img:first');
+//   active.fadeOut(function(){
+//   active.removeClass('active');
+//   next.fadeIn().addClass('active');
+//   });
+// }
+//
+// setInterval('imagegalerie()', 4000);
+//
+// imagegalerie();

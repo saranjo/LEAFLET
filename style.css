@@ -22,13 +22,36 @@
   margin-top: 50px;
 }
 
-#image{
-  
+#img, #stats{
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
 }
 
-#images img{
-  display: none;
-  position: absolute;
-  height: 100%;
-  width: auto;
+.city{
+  width: 32vw;
+  height: 18vw;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+#paris{
+  background-image: url("Images/paris.jpg");
+}
+
+#nice{
+  background-image: url("Images/Nice.jpg");
+}
+
+#bordeaux{
+  background-image: url("Images/bordeaux.jpg");
+}
+
+#stats table{
+  width : 32vw;
+}
+
+td, table tr th{
+  text-align: center;
 }
